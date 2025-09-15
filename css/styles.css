@@ -1,0 +1,191 @@
+/* 波中教育集团网站样式 */
+
+/* 全局样式 */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #ecf0f1;
+    color: #2c3e50;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* 自定义工具类 */
+.content-auto {
+    content-visibility: auto;
+}
+
+.text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.bg-gradient-custom {
+    background: linear-gradient(135deg, #0a3d62 0%, #6c5ce7 100%);
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+/* 导航栏样式 */
+#navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    transition: all 0.3s ease;
+}
+
+#navbar.bg-white {
+    background-color: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* 英雄区域样式 */
+#home {
+    position: relative;
+    overflow: hidden;
+}
+
+#home .wavy-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+}
+
+/* 卡片样式 */
+.card-hover {
+    transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* 图片悬停效果 */
+.img-hover-zoom {
+    transition: transform 0.7s ease;
+}
+
+.img-hover-zoom:hover {
+    transform: scale(1.1);
+}
+
+/* 按钮样式 */
+.btn-primary {
+    background-color: #0a3d62;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: rgba(10, 61, 98, 0.9);
+    transform: scale(1.05);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.btn-outline {
+    border: 2px solid #0a3d62;
+    color: #0a3d62;
+    background-color: transparent;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+    background-color: #0a3d62;
+    color: white;
+}
+
+/* 数据统计动画 */
+.counter-item div {
+    font-size: 2.5rem;
+    font-weight: 700;
+    transition: all 0.5s ease;
+}
+
+/* 社交图标样式 */
+.social-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: rgba(10, 61, 98, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0a3d62;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background-color: #0a3d62;
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* 响应式设计调整 */
+@media (max-width: 768px) {
+    .text-clamp {
+        font-size: 2.5rem;
+    }
+    
+    .grid-cols-2 {
+        grid-template-columns: 1fr;
+    }
+    
+    .grid-cols-3 {
+        grid-template-columns: 1fr;
+    }
+    
+    .grid-cols-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .md\:flex-row {
+        flex-direction: column;
+    }
+    
+    .md\:w-1\/2 {
+        width: 100%;
+    }
+    
+    .hidden {
+        display: none;
+    }
+    
+    .md\:hidden {
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .grid-cols-4 {
+        grid-template-columns: 1fr;
+    }
+    
+    .text-3xl {
+        font-size: 2rem;
+    }
+    
+    .text-4xl {
+        font-size: 2.5rem;
+    }
+    
+    .p-8 {
+        padding: 2rem;
+    }
+}

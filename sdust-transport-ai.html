@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>山东科技大学交通学院智能体 - 交好运</title>
+    <!-- 引入Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 引入Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    <!-- Google字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- 引入自定义样式 -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- 引入智能体样式 -->
+    <link rel="stylesheet" href="css/jiaohaoiyun.css">
+    <!-- 配置Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0066cc', // 蓝色作为主色调，代表科技和专业
+                        secondary: '#f0f7ff', // 浅蓝色作为辅助色
+                        accent: '#003366', // 深蓝色作为强调色
+                        dark: '#2c3e50',
+                        light: '#f8fafc',
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                },
+            }
+        }
+    </script>
+</head>
+<body class="font-inter bg-light text-dark antialiased">
+    <!-- 导航栏 -->
+    <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300">
+        <nav class="container mx-auto px-4 md:px-8 py-4 flex justify-between items-center">
+            <a href="#home" class="flex items-center space-x-2">
+                <div class="h-12 w-12 rounded-full bg-primary flex items-center justify-center">
+                    <span class="text-white text-2xl font-bold">SD</span>
+                </div>
+                <span class="text-xl md:text-2xl font-bold text-primary">山科大交通学院</span>
+            </a>
+            
+            <!-- 桌面导航 -->
+            <ul class="hidden md:flex space-x-8 items-center">
+                <li><a href="#home" class="text-dark hover:text-primary font-medium transition-colors">首页</a></li>
+                <li><a href="#about" class="text-dark hover:text-primary font-medium transition-colors">学院介绍</a></li>
+                <li><a href="#features" class="text-dark hover:text-primary font-medium transition-colors">智能功能</a></li>
+                <li><a href="#faq" class="text-dark hover:text-primary font-medium transition-colors">常见问题</a></li>
+                <li><a href="#contact" class="text-dark hover:text-primary font-medium transition-colors">联系我们</a></li>
+                <li><a href="#ai-agent" class="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-full font-medium transition-all transform hover:scale-105 shadow-lg hover:shadow-xl">
+                    交好运智能助手
+                </a></li>
+            </ul>
+            
+            <!-- 移动端菜单按钮 -->
+            <button id="menu-toggle" class="md:hidden text-dark text-2xl focus:outline-none">
+                <i class="fa fa-bars"></i>
+            </button>
+        </nav>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg absolute w-full">
+            <div class="container mx-auto px-4 py-4">
+                <ul class="space-y-4">
+                    <li><a href="#home" class="block text-dark hover:text-primary font-medium py-2 transition-colors">首页</a></li>
+                    <li><a href="#about" class="block text-dark hover:text-primary font-medium py-2 transition-colors">学院介绍</a></li>
+                    <li><a href="#features" class="block text-dark hover:text-primary font-medium py-2 transition-colors">智能功能</a></li>
+                    <li><a href="#faq" class="block text-dark hover:text-primary font-medium py-2 transition-colors">常见问题</a></li>
+                    <li><a href="#contact" class="block text-dark hover:text-primary font-medium py-2 transition-colors">联系我们</a></li>
+                    <li><a href="#ai-agent" class="block bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-full font-medium text-center transition-all shadow-lg">
+                        交好运智能助手
+                    </a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section id="home" class="pt-32 pb-20 md:pt-40 md:pb-32 bg-gradient-to-br from-primary via-primary to-accent text-white overflow-hidden">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-1/2 z-10 mb-10 md:mb-0">
+                    <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold leading-tight text-shadow mb-6">
+                        山东科技大学<br>交通学院智能体<span class="text-secondary">交好运</span>
+                    </h1>
+                    <p class="text-lg md:text-xl mb-8 text-white/90 max-w-lg">
+                        为交通学院师生提供智能问答、作业批改、学习辅助等全方位服务，助力教学科研与学习成长。
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#ai-agent" class="bg-white text-primary px-8 py-3 rounded-full font-semibold text-lg transition-all transform hover:scale-105 shadow-xl hover:shadow-2xl">
+                            立即体验
+                        </a>
+                        <a href="#features" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-semibold text-lg transition-all hover:bg-white/10">
+                            了解功能
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 relative">
+                    <div class="relative z-10 animate-float">
+                        <img src="https://picsum.photos/id/180/800/600" alt="交通学院智能体" class="rounded-2xl shadow-2xl">
+                        <div class="absolute -bottom-6 -left-6 bg-white text-primary p-4 rounded-xl shadow-xl">
+                            <div class="flex items-center space-x-2">
+                                <i class="fa fa-graduation-cap text-2xl text-primary"></i>
+                                <div>
+                                    <p class="text-sm font-medium text-dark">教育智能</p>
+                                    <p class="font-bold">AI辅助教学</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute -top-6 -right-6 bg-white text-primary p-4 rounded-xl shadow-xl">
+                            <div class="flex items-center space-x-2">
+                                <i class="fa fa-comments text-2xl text-accent"></i>
+                                <div>
+                                    <p class="text-sm font-medium text-dark">智能问答</p>
+                                    <p class="font-bold">实时响应</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-secondary/20 rounded-full blur-3xl -z-10"></div>
+                    <div class="absolute top-1/4 left-1/4 w-40 h-40 bg-accent/20 rounded-full blur-2xl -z-10"></div>
+                </div>
+            </div>
+        </div>
+        <!-- 波浪底部装饰 -->
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-16 md:h-24 text-light">
+                <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="currentColor"></path>
+                <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="currentColor"></path>
+                <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="currentColor"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- 学院介绍 -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2 relative">
+                    <img src="https://picsum.photos/id/1031/800/600" alt="山东科技大学交通学院" class="rounded-2xl shadow-xl">
+                    <div class="absolute -bottom-8 -right-8 bg-primary text-white p-6 rounded-xl shadow-xl max-w-xs">
+                        <div class="flex items-center space-x-2 mb-4">
+                            <i class="fa fa-university text-2xl text-secondary"></i>
+                            <h4 class="text-xl font-bold">学院简介</h4>
+                        </div>
+                        <p>山东科技大学交通学院是一所以交通工程、交通运输、车辆工程等为特色的工科学院，致力于培养交通领域的高级专门人才。</p>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <span class="text-accent font-semibold mb-2 block">山东科技大学交通学院</span>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-primary">培养交通领域的未来领军人才</h2>
+                    <p class="text-gray-600 mb-6">山东科技大学交通学院创建于1985年，经过多年的发展，已成为我国交通领域重要的人才培养和科学研究基地。学院设有交通工程、交通运输、车辆工程、物流工程等多个本科专业，并拥有交通运输工程一级学科硕士点和博士点。</p>
+                    <p class="text-gray-600 mb-8">学院师资力量雄厚，现有教职工120余人，其中教授25人，副教授40人，博士生导师15人。学院拥有多个国家级和省部级科研平台，承担了大量国家和省部级科研项目，取得了丰硕的科研成果。</p>
+                    
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div class="flex items-start space-x-3">
+                            <div class="mt-1 text-primary text-xl"><i class="fa fa-check-circle"></i></div>
+                            <div>
+                                <h4 class="font-semibold text-primary mb-1">学科优势</h4>
+                                <p class="text-sm text-gray-600">交通运输工程为山东省重点学科</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="mt-1 text-primary text-xl"><i class="fa fa-check-circle"></i></div>
+                            <div>
+                                <h4 class="font-semibold text-primary mb-1">科研平台</h4>
+                                <p class="text-sm text-gray-600">拥有多个国家级和省部级科研平台</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="mt-1 text-primary text-xl"><i class="fa fa-check-circle"></i></div>
+                            <div>
+                                <h4 class="font-semibold text-primary mb-1">师资力量</h4>
+                                <p class="text-sm text-gray-600">教授、副教授占比超过50%</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="mt-1 text-primary text-xl"><i class="fa fa-check-circle"></i></div>
+                            <div>
+                                <h4 class="font-semibold text-primary mb-1">人才培养</h4>
+                                <p class="text-sm text-gray-600">已培养各类毕业生8000余名</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#features" class="inline-block bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-semibold text-lg transition-all transform hover:scale-105 shadow-lg">
+                        探索智能体功能
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 智能功能 -->
+    <section id="features" class="py-20 bg-light">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary">"交好运"智能体核心功能</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">为师生提供全方位的智能服务，提升教学质量和学习效率</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 功能卡片1 -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 transition-all transform hover:scale-105 hover:shadow-2xl">
+                    <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fa fa-comments text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-primary">智能问答</h3>
+                    <p class="text-gray-600 mb-4">回答关于学院规章制度、专业课程、学术活动等各类问题，24小时在线服务。</p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center text-gray-600"><i class="fa fa-check text-primary mr-2"></i> 学院政策咨询</li>
+                        <li class="flex items-center text-gray-600"><i class="fa fa-check text-primary mr-2"></i> 课程信息查询</li>
+                        <li class="flex items-center text-gray-600"><i class="fa fa-check text-primary mr-2"></i> 学术活动咨询</li>
+                    </ul>
+                    <a href="#ai-agent" class="inline-flex items-center text-primary font-medium hover:text-accent transition-colors">
+                        立即体验 <i class="fa fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- 功能卡片2 -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 transition-all transform hover:scale-105 hover:shadow-2xl">
+                    <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fa fa-pencil-square-o text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-primary">作业批改辅助</h3>
+                    <p class="text-gray-600 mb-4">辅助教师进行作业批改，提供智能评分和反馈建议，提高教学效率。</p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center text-gray-600"><i class="fa fa-check text-primary mr-2"></i> 客观题自动批改</li>
+                        <li class="flex items-center text-gray-600"><i class="fa fa-check text-primary mr-2"></i> 主观题评分建议</li>
+                        <li class="flex items-center text-gray-600"><i class="fa fa-check text-primary mr-2"></i> 学习情况分析</li>
+                    </ul>
+                    <a href="#ai-agent" class="inline-flex items-center text-primary font-medium hover:text-accent transition-colors">
+                        立即体验 <i class="fa fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- 功能卡片3 -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 transition-all transform hover:scale-105 hover:shadow-2xl">
+                    <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fa fa-book text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-primary">学习资源助手</h3>
+                    <p class="text-gray-600 mb-4">提供课程资料查询、学习计划制定、知识答疑等个性化学习支持。</p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center text-gray-600"><i class="fa fa-check text-primary mr-2"></i> 课程资料检索</li>
+                        <li class="flex items-center text-gray-600"><i class="fa fa-check text-primary mr-2"></i> 个性化学习建议</li>
+                        <li class="flex items-center text-gray-600"><i class="fa fa-check text-primary mr-2"></i> 知识点强化训练</li>
+                    </ul>
+                    <a href="#ai-agent" class="inline-flex items-center text-primary font-medium hover:text-accent transition-colors">
+                        立即体验 <i class="fa fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 数据统计 -->
+    <section class="py-16 bg-gradient-to-br from-primary to-accent text-white">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="counter-item">
+                    <div class="text-4xl md:text-5xl font-bold mb-2" data-count="5000">0</div>
+                    <p class="text-lg">服务师生</p>
+                </div>
+                <div class="counter-item">
+                    <div class="text-4xl md:text-5xl font-bold mb-2" data-count="20000">0</div>
+                    <p class="text-lg">问答次数</p>
+                </div>
+                <div class="counter-item">
+                    <div class="text-4xl md:text-5xl font-bold mb-2" data-count="95">0</div>
+                    <p class="text-lg">满意度 (%)</p>
+                </div>
+                <div class="counter-item">
+                    <div class="text-4xl md:text-5xl font-bold mb-2" data-count="12">0</div>
+                    <p class="text-lg">支持学科</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section id="faq" class="py-20 bg-white">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-16">
+                <span class="text-accent font-semibold mb-2 block">常见问题</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary">师生常问问题</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">以下是师生经常咨询的问题，您可以直接点击查看答案</p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto space-y-4" id="faq-container">
+                <!-- FAQ项目1 -->
+                <div class="border border-gray-200 rounded-xl overflow-hidden">
+                    <button class="faq-toggle w-full bg-light p-6 text-left font-semibold text-primary flex justify-between items-center" data-target="faq-1">
+                        <span>如何查询我的课程表和考试安排？</span>
+                        <i class="fa fa-chevron-down text-gray-500 transition-transform"></i>
+                    </button>
+                    <div id="faq-1" class="faq-content hidden p-6 bg-white border-t border-gray-200">
+                        <p class="text-gray-600">您可以通过两种方式查询课程表和考试安排：1) 登录学校教务系统，在"我的课程"和"考试安排"模块查看；2) 直接向"交好运"智能体提问，例如说"查询我的课程表"或"考试安排是什么时候"，智能体将引导您完成查询。</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ项目2 -->
+                <div class="border border-gray-200 rounded-xl overflow-hidden">
+                    <button class="faq-toggle w-full bg-light p-6 text-left font-semibold text-primary flex justify-between items-center" data-target="faq-2">
+                        <span>智能体能批改哪些类型的作业？</span>
+                        <i class="fa fa-chevron-down text-gray-500 transition-transform"></i>
+                    </button>
+                    <div id="faq-2" class="faq-content hidden p-6 bg-white border-t border-gray-200">
+                        <p class="text-gray-600">"交好运"智能体目前可以辅助批改多种类型的作业，包括选择题、填空题、简答题等。对于客观题可以实现自动评分，对于主观题可以提供评分建议和参考意见。教师可以上传作业模板，系统将根据模板进行智能批改。</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ项目3 -->
+                <div class="border border-gray-200 rounded-xl overflow-hidden">
+                    <button class="faq-toggle w-full bg-light p-6 text-left font-semibold text-primary flex justify-between items-center" data-target="faq-3">
+                        <span>如何获取学院的学术活动信息？</span>
+                        <i class="fa fa-chevron-down text-gray-500 transition-transform"></i>
+                    </button>
+                    <div id="faq-3" class="faq-content hidden p-6 bg-white border-t border-gray-200">
+                        <p class="text-gray-600">您可以通过以下方式获取学院学术活动信息：1) 关注学院官方网站和微信公众号；2) 向"交好运"智能体提问，例如说"近期有哪些学术讲座"或"本周学术活动安排"；3) 查看学院公告栏和各系部通知。</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ项目4 -->
+                <div class="border border-gray-200 rounded-xl overflow-hidden">
+                    <button class="faq-toggle w-full bg-light p-6 text-left font-semibold text-primary flex justify-between items-center" data-target="faq-4">
+                        <span>智能体如何保护我的个人信息？</span>
+                        <i class="fa fa-chevron-down text-gray-500 transition-transform"></i>
+                    </button>
+                    <div id="faq-4" class="faq-content hidden p-6 bg-white border-t border-gray-200">
+                        <p class="text-gray-600">"交好运"智能体严格遵守数据隐私保护法规，采取多重安全措施保护您的个人信息：所有数据传输采用加密方式；个人身份信息进行匿名化处理；严格的数据访问权限控制；定期进行安全审计和漏洞扫描。您可以放心使用我们的服务。</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ项目5 -->
+                <div class="border border-gray-200 rounded-xl overflow-hidden">
+                    <button class="faq-toggle w-full bg-light p-6 text-left font-semibold text-primary flex justify-between items-center" data-target="faq-5">
+                        <span>如何使用智能体进行学习辅助？</span>
+                        <i class="fa fa-chevron-down text-gray-500 transition-transform"></i>
+                    </button>
+                    <div id="faq-5" class="faq-content hidden p-6 bg-white border-t border-gray-200">
+                        <p class="text-gray-600">使用"交好运"智能体进行学习辅助非常简单：1) 通过网页、微信公众号或APP访问智能体；2) 直接输入您的问题，例如"解释一下交通流理论的基本概念"或"如何求解这个力学问题"；3) 智能体将根据您的问题提供详细解答和学习建议；4) 您还可以请求提供相关学习资料和习题。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 智能体交互区域 -->
+    <section id="ai-agent" class="py-20 bg-light">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-16">
+                <span class="text-accent font-semibold mb-2 block">智能交互</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary">与"交好运"智能体对话</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">直接在这里与智能体交流，获取学院信息、作业帮助和学习支持</p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
+                <!-- 智能体头部 -->
+                <div class="bg-primary text-white p-6 flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
+                            <i class="fa fa-robot text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">交好运智能助手</h3>
+                            <p class="text-white/80 text-sm">山东科技大学交通学院</p>
+                        </div>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                        <button class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors">
+                            <i class="fa fa-window-maximize"></i>
+                        </button>
+                        <button class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 智能体消息区域 -->
+                <div class="h-96 overflow-y-auto p-6" id="chat-container">
+                    <!-- 欢迎消息 -->
+                    <div class="flex mb-4 items-start">
+                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mr-3">
+                            <i class="fa fa-robot text-primary"></i>
+                        </div>
+                        <div class="bg-secondary rounded-2xl p-4 max-w-[80%]">
+                            <p class="text-gray-700">你好！我是"交好运"智能助手，很高兴为你服务。我可以帮你解答关于山东科技大学交通学院的各种问题，包括课程信息、作业辅导、学院政策等。请问有什么可以帮助你的吗？</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 快捷问题 -->
+                <div class="border-t border-gray-200 p-4 bg-gray-50">
+                    <div class="flex flex-wrap gap-2">
+                        <button class="quick-question px-4 py-2 bg-primary/10 text-primary rounded-full text-sm hover:bg-primary/20 transition-colors">查询课程表</button>
+                        <button class="quick-question px-4 py-2 bg-primary/10 text-primary rounded-full text-sm hover:bg-primary/20 transition-colors">作业批改帮助</button>
+                        <button class="quick-question px-4 py-2 bg-primary/10 text-primary rounded-full text-sm hover:bg-primary/20 transition-colors">学院近期活动</button>
+                        <button class="quick-question px-4 py-2 bg-primary/10 text-primary rounded-full text-sm hover:bg-primary/20 transition-colors">专业培养方案</button>
+                    </div>
+                </div>
+                
+                <!-- 智能体输入区域 -->
+                <div class="border-t border-gray-200 p-6">
+                    <div class="flex space-x-3">
+                        <input type="text" id="user-input" class="flex-1 px-4 py-3 border border-gray-300 rounded-full focus:ring-2 focus:ring-primary focus:border-primary transition-colors" placeholder="请输入你的问题...">
+                        <button id="send-btn" class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center hover:bg-primary/90 transition-colors">
+                            <i class="fa fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 作业批改区域 -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-16">
+                <span class="text-accent font-semibold mb-2 block">作业批改</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary">智能作业批改系统</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">上传作业，获取智能批改和学习反馈</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto bg-light rounded-2xl shadow-xl p-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6 text-primary">上传作业</h3>
+                        <div class="border-2 border-dashed border-primary/30 rounded-xl p-8 text-center hover:border-primary transition-colors cursor-pointer" id="upload-area">
+                            <i class="fa fa-cloud-upload text-4xl text-primary/50 mb-4"></i>
+                            <p class="text-gray-600 mb-2">点击或拖拽文件到此处上传</p>
+                            <p class="text-gray-500 text-sm">支持PDF、Word、图片等格式</p>
+                            <input type="file" id="file-upload" class="hidden">
+                        </div>
+                        
+                        <div class="mt-6 space-y-4">
+                            <div class="flex items-center justify-between">
+                                <label class="font-medium text-primary">作业类型</label>
+                                <select class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors">
+                                    <option>选择题作业</option>
+                                    <option>填空题作业</option>
+                                    <option>简答题作业</option>
+                                    <option>综合作业</option>
+                                </select>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <label class="font-medium text-primary">批改模式</label>
+                                <select class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors">
+                                    <option>自动评分</option>
+                                    <option>评分建议</option>
+                                    <option>仅反馈</option>
+                                </select>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <label class="font-medium text-primary">学科</label>
+                                <select class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors">
+                                    <option>交通工程</option>
+                                    <option>交通运输</option>
+                                    <option>车辆工程</option>
+                                    <option>物流工程</option>
+                                    <option>其他学科</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6 text-primary">批改设置</h3>
+                        
+                        <div class="mb-6">
+                            <label class="block font-medium text-primary mb-2">答案参考（可选）</label>
+                            <textarea class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors" rows="4" placeholder="请输入参考答案或评分标准..."></textarea>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block font-medium text-primary mb-2">特殊要求（可选）</label>
+                            <textarea class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors" rows="2" placeholder="请输入特殊批改要求..."></textarea>
+                        </div>
+                        
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="show-detailed-feedback" class="w-4 h-4 text-primary focus:ring-primary border-gray-300 rounded">
+                                <label for="show-detailed-feedback" class="ml-2 text-gray-700">提供详细反馈</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="generate-analysis" class="w-4 h-4 text-primary focus:ring-primary border-gray-300 rounded">
+                                <label for="generate-analysis" class="ml-2 text-gray-700">生成学习分析报告</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="save-history" class="w-4 h-4 text-primary focus:ring-primary border-gray-300 rounded">
+                                <label for="save-history" class="ml-2 text-gray-700">保存批改历史</label>
+                            </div>
+                        </div>
+                        
+                        <button class="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-lg font-semibold transition-colors shadow-lg hover:shadow-xl">
+                            开始智能批改
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section id="contact" class="py-20 bg-light">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-16">
+                <span class="text-accent font-semibold mb-2 block">联系我们</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary">欢迎咨询</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">如有任何问题或建议，欢迎联系我们</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <!-- 联系卡片1 -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 text-center transition-all transform hover:scale-105 hover:shadow-2xl">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fa fa-map-marker text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-primary">学院地址</h3>
+                    <p class="text-gray-600">山东省青岛市黄岛区前湾港路579号山东科技大学交通学院</p>
+                </div>
+                
+                <!-- 联系卡片2 -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 text-center transition-all transform hover:scale-105 hover:shadow-2xl">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fa fa-phone text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-primary">联系电话</h3>
+                    <p class="text-gray-600">0532-86057600</p>
+                    <p class="text-gray-600 mt-2">0532-86057601</p>
+                </div>
+                
+                <!-- 联系卡片3 -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 text-center transition-all transform hover:scale-105 hover:shadow-2xl">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fa fa-envelope text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-primary">电子邮箱</h3>
+                    <p class="text-gray-600">jtxy@sdust.edu.cn</p>
+                    <p class="text-gray-600 mt-2">ai@sdust.edu.cn</p>
+                </div>
+            </div>
+            
+            <!-- 社交媒体 -->
+            <div class="text-center">
+                <h3 class="text-xl font-bold mb-6 text-primary">关注我们</h3>
+                <div class="flex justify-center space-x-6">
+                    <a href="#" class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all">
+                        <i class="fa fa-weixin text-xl"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all">
+                        <i class="fa fa-weibo text-xl"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all">
+                        <i class="fa fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all">
+                        <i class="fa fa-instagram text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-primary text-white py-12">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <a href="#home" class="flex items-center space-x-2 mb-6">
+                        <div class="h-12 w-12 rounded-full bg-white flex items-center justify-center">
+                            <span class="text-primary text-2xl font-bold">SD</span>
+                        </div>
+                        <span class="text-xl font-bold text-white">山科大交通学院</span>
+                    </a>
+                    <p class="text-white/80 mb-6">培养交通领域的高级专门人才，服务国家和地方经济社会发展。</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white/70 hover:text-white transition-colors"><i class="fa fa-weixin"></i></a>
+                        <a href="#" class="text-white/70 hover:text-white transition-colors"><i class="fa fa-weibo"></i></a>
+                        <a href="#" class="text-white/70 hover:text-white transition-colors"><i class="fa fa-linkedin"></i></a>
+                        <a href="#" class="text-white/70 hover:text-white transition-colors"><i class="fa fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">快速链接</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-white/80 hover:text-white transition-colors">首页</a></li>
+                        <li><a href="#about" class="text-white/80 hover:text-white transition-colors">学院介绍</a></li>
+                        <li><a href="#features" class="text-white/80 hover:text-white transition-colors">智能功能</a></li>
+                        <li><a href="#faq" class="text-white/80 hover:text-white transition-colors">常见问题</a></li>
+                        <li><a href="#contact" class="text-white/80 hover:text-white transition-colors">联系我们</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">智能服务</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#ai-agent" class="text-white/80 hover:text-white transition-colors">智能问答</a></li>
+                        <li><a href="#" class="text-white/80 hover:text-white transition-colors">作业批改</a></li>
+                        <li><a href="#" class="text-white/80 hover:text-white transition-colors">学习资源</a></li>
+                        <li><a href="#" class="text-white/80 hover:text-white transition-colors">学术支持</a></li>
+                        <li><a href="#" class="text-white/80 hover:text-white transition-colors">数据分析</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">联系信息</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start space-x-3">
+                            <i class="fa fa-map-marker mt-1 text-white/80"></i>
+                            <span class="text-white/80">山东省青岛市黄岛区前湾港路579号</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fa fa-phone mt-1 text-white/80"></i>
+                            <span class="text-white/80">0532-86057600</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fa fa-envelope mt-1 text-white/80"></i>
+                            <span class="text-white/80">jtxy@sdust.edu.cn</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/20 pt-8 text-center text-white/70 text-sm">
+                <p>&copy; 2025 山东科技大学交通学院. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 引入JavaScript脚本 -->
+    <script src="js/scripts.js"></script>
+    <script src="js/jiaohaoiyun.js"></script>
+</body>
+</html>

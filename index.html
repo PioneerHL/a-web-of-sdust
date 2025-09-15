@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>波中教育集团</title>
+    <!-- 引入Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 引入Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    <!-- Google字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- 引入自定义样式 -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- 引入AI智能体样式 -->
+    <link rel="stylesheet" href="css/ai-agent.css">
+    <!-- 配置Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0a3d62', // 深蓝色作为主色调，传达专业和信任感
+                        secondary: '#f9ca24', // 金色作为辅助色，传达高端感
+                        accent: '#6c5ce7', // 紫色作为点缀色
+                        dark: '#2c3e50',
+                        light: '#ecf0f1',
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                },
+            }
+        }
+    </script>
+</head>
+<body class="font-inter bg-light text-dark antialiased">
+    <!-- 导航栏 -->
+    <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300">
+        <nav class="container mx-auto px-4 md:px-8 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-2">
+                <div class="h-12 w-12 rounded-full bg-primary flex items-center justify-center">
+                    <span class="text-white text-2xl font-bold">BZ</span>
+                </div>
+                <span class="text-xl md:text-2xl font-bold text-primary">波中教育集团</span>
+            </a>
+            
+            <!-- 桌面导航 -->
+            <ul class="hidden md:flex space-x-8 items-center">
+                <li><a href="#home" class="text-dark hover:text-primary font-medium transition-colors">首页</a></li>
+                <li><a href="#about" class="text-dark hover:text-primary font-medium transition-colors">关于我们</a></li>
+                <li><a href="#programs" class="text-dark hover:text-primary font-medium transition-colors">教育项目</a></li>
+                <li><a href="#achievements" class="text-dark hover:text-primary font-medium transition-colors">办学成果</a></li>
+                <li><a href="#contact" class="text-dark hover:text-primary font-medium transition-colors">联系我们</a></li>
+                <li><a href="#admission" class="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-full font-medium transition-all transform hover:scale-105 shadow-lg hover:shadow-xl">招生咨询</a></li>
+            </ul>
+            
+            <!-- 移动端菜单按钮 -->
+            <button id="menu-toggle" class="md:hidden text-dark text-2xl focus:outline-none">
+                <i class="fa fa-bars"></i>
+            </button>
+        </nav>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg absolute w-full">
+            <div class="container mx-auto px-4 py-4">
+                <ul class="space-y-4">
+                    <li><a href="#home" class="block text-dark hover:text-primary font-medium py-2 transition-colors">首页</a></li>
+                    <li><a href="#about" class="block text-dark hover:text-primary font-medium py-2 transition-colors">关于我们</a></li>
+                    <li><a href="#programs" class="block text-dark hover:text-primary font-medium py-2 transition-colors">教育项目</a></li>
+                    <li><a href="#achievements" class="block text-dark hover:text-primary font-medium py-2 transition-colors">办学成果</a></li>
+                    <li><a href="#contact" class="block text-dark hover:text-primary font-medium py-2 transition-colors">联系我们</a></li>
+                    <li><a href="#admission" class="block bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-full font-medium text-center transition-all shadow-lg">招生咨询</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section id="home" class="pt-32 pb-20 md:pt-40 md:pb-32 bg-gradient-to-br from-primary via-primary to-accent text-white overflow-hidden">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-1/2 z-10 mb-10 md:mb-0">
+                    <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold leading-tight text-shadow mb-6">
+                        培养未来<br>引领<span class="text-secondary">时代精英</span>
+                    </h1>
+                    <p class="text-lg md:text-xl mb-8 text-white/90 max-w-lg">
+                        波中教育集团致力于为学生提供卓越的教育体验，培养具有全球视野和创新能力的未来领导者。
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#programs" class="bg-white text-primary px-8 py-3 rounded-full font-semibold text-lg transition-all transform hover:scale-105 shadow-xl hover:shadow-2xl">
+                            探索教育项目
+                        </a>
+                        <a href="#about" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-semibold text-lg transition-all hover:bg-white/10">
+                            了解更多
+                        </a>
+                    </div>
+                    <div class="mt-12 flex items-center space-x-6">
+                        <div class="flex -space-x-3">
+                            <img src="images/chenhaolin1.jpg" alt="学生照片" class="w-12 h-12 rounded-full border-2 border-white">
+                            <img src="images/chenhaolin2.jpg" alt="学生照片" class="w-12 h-12 rounded-full border-2 border-white">
+                            <img src="images/chenhaolin3.jpg" alt="学生照片" class="w-12 h-12 rounded-full border-2 border-white">
+                            <div class="w-12 h-12 rounded-full border-2 border-white bg-primary/50 flex items-center justify-center text-sm font-medium">
+                                500+
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-white/90 text-sm">来自全球各地的学生</p>
+                            <div class="flex text-secondary">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <span class="ml-1 text-white font-medium">4.9/5</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 relative">
+                    <div class="relative z-10 animate-float">
+                        <img src="images/chenhaolin1.jpg" alt="教育场景" class="rounded-2xl shadow-2xl">
+                        <div class="absolute -bottom-6 -left-6 bg-white text-primary p-4 rounded-xl shadow-xl">
+                            <div class="flex items-center space-x-2">
+                                <i class="fa fa-graduation-cap text-2xl text-secondary"></i>
+                                <div>
+                                    <p class="text-sm font-medium text-dark">国际认证</p>
+                                    <p class="font-bold">ISO 9001:2015</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute -top-6 -right-6 bg-white text-primary p-4 rounded-xl shadow-xl">
+                            <div class="flex items-center space-x-2">
+                                <i class="fa fa-globe text-2xl text-accent"></i>
+                                <div>
+                                    <p class="text-sm font-medium text-dark">全球合作</p>
+                                    <p class="font-bold">50+ 国家</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-secondary/20 rounded-full blur-3xl -z-10"></div>
+                    <div class="absolute top-1/4 left-1/4 w-40 h-40 bg-accent/20 rounded-full blur-2xl -z-10"></div>
+                </div>
+            </div>
+        </div>
+        <!-- 波浪底部装饰 -->
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-16 md:h-24 text-light">
+                <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="currentColor"></path>
+                <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="currentColor"></path>
+                <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="currentColor"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- 特色区域 -->
+    <section class="py-20 bg-light">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary">为什么选择波中教育集团？</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">我们提供卓越的教育体验，培养具有全球视野和创新能力的未来领导者。</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 特色卡片1 -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 transition-all transform hover:scale-105 hover:shadow-2xl">
+                    <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fa fa-university text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-primary">一流师资团队</h3>
+                    <p class="text-gray-600 mb-4">我们拥有来自全球顶尖学府的教授和行业专家，为学生提供最优质的教育资源。</p>
+                    <a href="#about" class="inline-flex items-center text-primary font-medium hover:text-accent transition-colors">
+                        了解更多 <i class="fa fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- 特色卡片2 -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 transition-all transform hover:scale-105 hover:shadow-2xl">
+                    <div class="w-16 h-16 bg-secondary/10 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fa fa-globe text-2xl text-secondary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-primary">国际教育资源</h3>
+                    <p class="text-gray-600 mb-4">与全球50+国家的知名学府建立合作关系，为学生提供国际化的学习体验和交流机会。</p>
+                    <a href="#programs" class="inline-flex items-center text-primary font-medium hover:text-accent transition-colors">
+                        探索项目 <i class="fa fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- 特色卡片3 -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 transition-all transform hover:scale-105 hover:shadow-2xl">
+                    <div class="w-16 h-16 bg-accent/10 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fa fa-lightbulb-o text-2xl text-accent"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-primary">创新教育模式</h3>
+                    <p class="text-gray-600 mb-4">融合传统与现代教育理念，采用项目式学习和实践导向的教学方法，培养学生的创新能力和解决问题的能力。</p>
+                    <a href="#about" class="inline-flex items-center text-primary font-medium hover:text-accent transition-colors">
+                        教育理念 <i class="fa fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2 relative">
+                    <img src="https://picsum.photos/id/429/800/600" alt="波中教育集团校园" class="rounded-2xl shadow-xl">
+                    <div class="absolute -bottom-8 -right-8 bg-primary text-white p-6 rounded-xl shadow-xl max-w-xs">
+                        <div class="flex items-center space-x-2 mb-4">
+                            <i class="fa fa-trophy text-2xl text-secondary"></i>
+                            <h4 class="text-xl font-bold">办学成就</h4>
+                        </div>
+                        <p>20年来，波中教育集团已培养超过10,000名优秀毕业生，遍布全球顶尖大学和企业。</p>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <span class="text-accent font-semibold mb-2 block">关于波中教育集团</span>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-primary">培养未来领导者的摇篮</h2>
+                    <p class="text-gray-600 mb-6">波中教育集团成立于2003年，是一家专注于提供高质量国际教育的综合性教育集团。我们致力于培养具有全球视野、创新精神和社会责任感的未来领导者。</p>
+                    <p class="text-gray-600 mb-8">经过20年的发展，波中教育集团已成为中国领先的国际教育机构之一，拥有从幼儿园到大学预科的完整教育体系，并与全球50多个国家的知名学府建立了紧密的合作关系。</p>
+                    
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div class="flex items-start space-x-3">
+                            <div class="mt-1 text-secondary text-xl"><i class="fa fa-check-circle"></i></div>
+                            <div>
+                                <h4 class="font-semibold text-primary mb-1">国际认证课程</h4>
+                                <p class="text-sm text-gray-600">提供A-Level、IB、AP等国际认证课程</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="mt-1 text-secondary text-xl"><i class="fa fa-check-circle"></i></div>
+                            <div>
+                                <h4 class="font-semibold text-primary mb-1">全球师资力量</h4>
+                                <p class="text-sm text-gray-600">来自全球20多个国家的优秀教师团队</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="mt-1 text-secondary text-xl"><i class="fa fa-check-circle"></i></div>
+                            <div>
+                                <h4 class="font-semibold text-primary mb-1">现代化校园</h4>
+                                <p class="text-sm text-gray-600">配备先进设施的现代化校园环境</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="mt-1 text-secondary text-xl"><i class="fa fa-check-circle"></i></div>
+                            <div>
+                                <h4 class="font-semibold text-primary mb-1">个性化教育</h4>
+                                <p class="text-sm text-gray-600">关注每个学生的个性化发展需求</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#programs" class="inline-block bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-semibold text-lg transition-all transform hover:scale-105 shadow-lg">
+                        探索我们的教育项目
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 数据统计 -->
+    <section class="py-16 bg-gradient-custom text-white">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="counter-item">
+                    <div class="text-4xl md:text-5xl font-bold mb-2" data-count="15">0</div>
+                    <p class="text-lg">国际学校</p>
+                </div>
+                <div class="counter-item">
+                    <div class="text-4xl md:text-5xl font-bold mb-2" data-count="50">0</div>
+                    <p class="text-lg">全球合作伙伴</p>
+                </div>
+                <div class="counter-item">
+                    <div class="text-4xl md:text-5xl font-bold mb-2" data-count="10000">0</div>
+                    <p class="text-lg">毕业学生</p>
+                </div>
+                <div class="counter-item">
+                    <div class="text-4xl md:text-5xl font-bold mb-2" data-count="98">0</div>
+                    <p class="text-lg">升学率 (%)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 教育项目 -->
+    <section id="programs" class="py-20 bg-light">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-16">
+                <span class="text-accent font-semibold mb-2 block">我们的教育项目</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary">为每个阶段提供卓越教育</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">从幼儿园到大学预科，我们提供全方位的国际教育课程，满足不同年龄段学生的学习需求。</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 项目卡片1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-xl transition-all transform hover:scale-105 hover:shadow-2xl">
+                    <div class="h-56 overflow-hidden">
+                        <img src="images/chenhaolin3.jpg" alt="梭子蟹" class="w-full h-full object-cover transition-transform hover:scale-110 duration-700">
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-bold text-primary">梭子蟹</h3>
+                            <span class="bg-secondary/10 text-secondary text-sm px-3 py-1 rounded-full">3-6岁</span>
+                        </div>
+                        <p class="text-gray-600 mb-6">采用IB PYP课程框架，通过游戏和探索式学习，培养幼儿的好奇心、创造力和社交能力。</p>
+                        <a href="#admission" class="inline-flex items-center text-primary font-medium hover:text-accent transition-colors">
+                            了解详情 <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 项目卡片2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-xl transition-all transform hover:scale-105 hover:shadow-2xl">
+                    <div class="h-56 overflow-hidden">
+                        <img src="https://picsum.photos/id/20/600/400" alt="国际小学" class="w-full h-full object-cover transition-transform hover:scale-110 duration-700">
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-bold text-primary">国际小学</h3>
+                            <span class="bg-secondary/10 text-secondary text-sm px-3 py-1 rounded-full">6-12岁</span>
+                        </div>
+                        <p class="text-gray-600 mb-6">融合中西方教育理念，提供双语教学环境，注重学生的全面发展和个性化培养。</p>
+                        <a href="#admission" class="inline-flex items-center text-primary font-medium hover:text-accent transition-colors">
+                            了解详情 <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 项目卡片3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-xl transition-all transform hover:scale-105 hover:shadow-2xl">
+                    <div class="h-56 overflow-hidden">
+                        <img src="images/chenhaolin3.jpg" alt="梭子蟹" class="w-full h-full object-cover transition-transform hover:scale-110 duration-700">
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-bold text-primary">梭子蟹</h3>
+                            <span class="bg-secondary/10 text-secondary text-sm px-3 py-1 rounded-full">12-18岁</span>
+                        </div>
+                        <p class="text-gray-600 mb-6">提供A-Level、IB、AP等国际认证课程，为学生进入世界顶尖大学做好充分准备。</p>
+                        <a href="#admission" class="inline-flex items-center text-primary font-medium hover:text-accent transition-colors">
+                            了解详情 <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#admission" class="inline-block border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 rounded-full font-semibold text-lg transition-all">
+                    查看全部教育项目
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 办学成果 -->
+    <section id="achievements" class="py-20 bg-white">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-16">
+                <span class="text-accent font-semibold mb-2 block">办学成果</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary">我们的学生走向世界顶尖大学</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">波中教育集团的毕业生遍布全球各大知名学府，在各个领域展现出卓越的才能和领导力。</p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2">
+                    <!-- 大学录取数据图表 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-lg mb-8">
+                        <h3 class="text-xl font-bold mb-6 text-primary">2023届毕业生大学录取分布</h3>
+                        <div class="h-80">
+                            <canvas id="universityChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- 录取率数据 -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="bg-primary/5 p-6 rounded-xl">
+                            <div class="flex items-center justify-between mb-4">
+                                <h4 class="font-bold text-primary">常春藤录取率</h4>
+                                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                                    <i class="fa fa-line-chart text-primary"></i>
+                                </div>
+                            </div>
+                            <div class="text-3xl font-bold text-primary">12.5%</div>
+                            <p class="text-sm text-gray-600">高于全国平均水平8倍</p>
+                        </div>
+                        <div class="bg-secondary/5 p-6 rounded-xl">
+                            <div class="flex items-center justify-between mb-4">
+                                <h4 class="font-bold text-primary">世界前50大学录取率</h4>
+                                <div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center">
+                                    <i class="fa fa-globe text-secondary"></i>
+                                </div>
+                            </div>
+                            <div class="text-3xl font-bold text-primary">78.3%</div>
+                            <p class="text-sm text-gray-600">连续5年稳步增长</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <!-- 学生故事 -->
+                    <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                        <div class="p-8">
+                            <h3 class="text-xl font-bold mb-6 text-primary">学生成功故事</h3>
+                            
+                            <!-- 故事卡片1 -->
+                            <div class="mb-8 p-6 bg-light rounded-xl">
+                                <div class="flex items-center mb-4">
+                                    <img src="images/chenhaolin1.jpg" alt="陈浩林" class="w-14 h-14 rounded-full object-cover mr-4">
+                                    <div>
+                                        <h4 class="font-bold text-primary">陈浩林</h4>
+                                        <p class="text-sm text-gray-600">北京工业大学 交通运输专业</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 italic">"在波中教育集团的学习经历为我打开了通往世界顶尖大学的大门。这里不仅教授知识，更培养了我的批判性思维和解决问题的能力。"</p>
+                            </div>
+                            
+                            <!-- 故事卡片2 -->
+                            <div class="p-6 bg-light rounded-xl">
+                                <div class="flex items-center mb-4">
+                                    <img src="images/chenhaolin1.jpg" alt="李文龙" class="w-14 h-14 rounded-full object-cover mr-4">
+                                    <div>
+                                        <h4 class="font-bold text-primary">李文龙</h4>
+                                        <p class="text-sm text-gray-600">牛津大学 计算机科学专业</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 italic">"波中教育集团的国际课程和丰富的课外活动让我在申请顶尖大学时脱颖而出。老师的个性化指导和支持对我的成长至关重要。"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 师资力量 -->
+    <section class="py-20 bg-light">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-16">
+                <span class="text-accent font-semibold mb-2 block">师资力量</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary">来自全球的顶尖教师团队</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">我们的教师团队由来自全球20多个国家的教育专家组成，他们拥有丰富的教学经验和深厚的学术背景。</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- 教师卡片1 -->
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden transition-all transform hover:scale-105 hover:shadow-2xl">
+                    <div class="h-72 overflow-hidden">
+                        <img src="images/chenhaolin1.jpg" alt="Dr. Sarah Johnson" class="w-full h-full object-cover transition-transform hover:scale-110 duration-700">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary mb-1">Sarah Johnson 博士</h3>
+                        <p class="text-accent mb-3">哈佛大学教育学博士</p>
+                        <p class="text-gray-600 text-sm">前哈佛大学教育学院研究员，拥有20年国际教育经验，专注于创新教育方法研究。</p>
+                        <div class="mt-4 flex space-x-3">
+                            <a href="#" class="text-gray-500 hover:text-primary transition-colors"><i class="fa fa-linkedin"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-primary transition-colors"><i class="fa fa-twitter"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-primary transition-colors"><i class="fa fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 教师卡片2 -->
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden transition-all transform hover:scale-105 hover:shadow-2xl">
+                    <div class="h-72 overflow-hidden">
+                        <img src="images/chenhaolin3.jpg" alt="Prof. Zhang Wei" class="w-full h-full object-cover transition-transform hover:scale-110 duration-700">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary mb-1">崔萌萌 博士</h3>
+                        <p class="text-accent mb-3">牛津大学物理学博士</p>
+                        <p class="text-gray-600 text-sm">前剑桥大学研究员，国际奥林匹克竞赛金牌教练，在量子物理领域有多项研究成果。</p>
+                        <div class="mt-4 flex space-x-3">
+                            <a href="#" class="text-gray-500 hover:text-primary transition-colors"><i class="fa fa-linkedin"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-primary transition-colors"><i class="fa fa-twitter"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-primary transition-colors"><i class="fa fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 教师卡片3 -->
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden transition-all transform hover:scale-105 hover:shadow-2xl">
+                    <div class="h-72 overflow-hidden">
+                        <img src="images/chenhaolin3.jpg" alt="Dr. Maria Garcia" class="w-full h-full object-cover transition-transform hover:scale-110 duration-700">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary mb-1">Maria Garcia 博士</h3>
+                        <p class="text-accent mb-3">麻省理工学院计算机科学博士</p>
+                        <p class="text-gray-600 text-sm">人工智能领域专家，曾在谷歌和微软担任高级研究员，拥有丰富的行业经验。</p>
+                        <div class="mt-4 flex space-x-3">
+                            <a href="#" class="text-gray-500 hover:text-primary transition-colors"><i class="fa fa-linkedin"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-primary transition-colors"><i class="fa fa-twitter"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-primary transition-colors"><i class="fa fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 教师卡片4 -->
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden transition-all transform hover:scale-105 hover:shadow-2xl">
+                    <div class="h-72 overflow-hidden">
+                        <img src="images/chenhaolin3.jpg" alt="Prof. James Wilson" class="w-full h-full object-cover transition-transform hover:scale-110 duration-700">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary mb-1">James Wilson 教授</h3>
+                        <p class="text-accent mb-3">耶鲁大学经济学博士</p>
+                        <p class="text-gray-600 text-sm">前世界银行高级经济学家，在国际金融和宏观经济领域有深入研究，著有多部学术著作。</p>
+                        <div class="mt-4 flex space-x-3">
+                            <a href="#" class="text-gray-500 hover:text-primary transition-colors"><i class="fa fa-linkedin"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-primary transition-colors"><i class="fa fa-twitter"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-primary transition-colors"><i class="fa fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-flex items-center text-primary font-medium hover:text-accent transition-colors">
+                    查看全部师资 <i class="fa fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 学生活动 -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-16">
+                <span class="text-accent font-semibold mb-2 block">学生生活</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary">丰富多彩的课外活动</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">我们鼓励学生积极参与各种课外活动，发展兴趣爱好，培养团队合作精神和领导能力。</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="h-64 overflow-hidden rounded-xl shadow-lg group">
+                    <img src="images/chenhaolin3.jpg" alt="学生活动" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-primary/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <span class="text-white font-bold px-4 py-2 rounded-full">科学竞赛</span>
+                    </div>
+                </div>
+                <div class="h-64 overflow-hidden rounded-xl shadow-lg group">
+                    <img src="images/chenhaolin3.jpg" alt="学生活动" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-primary/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <span class="text-white font-bold px-4 py-2 rounded-full">艺术表演</span>
+                    </div>
+                </div>
+                <div class="h-64 overflow-hidden rounded-xl shadow-lg group">
+                    <img src="images/chenhaolin3.jpg" alt="学生活动" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-primary/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <span class="text-white font-bold px-4 py-2 rounded-full">体育赛事</span>
+                    </div>
+                </div>
+                <div class="h-64 overflow-hidden rounded-xl shadow-lg group">
+                    <img src="images/chenhaolin3.jpg" alt="学生活动" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-primary/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <span class="text-white font-bold px-4 py-2 rounded-full">社区服务</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 招生咨询 -->
+    <section id="admission" class="py-20 bg-gradient-to-br from-primary via-primary to-accent text-white">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="max-w-4xl mx-auto bg-white text-dark rounded-3xl shadow-2xl overflow-hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2">
+                    <div class="p-8 md:p-12">
+                        <h2 class="text-3xl font-bold mb-6 text-primary">预约咨询</h2>
+                        <p class="text-gray-600 mb-8">填写以下信息，我们的招生顾问将尽快与您联系，为您提供个性化的教育咨询服务。</p>
+                        <form>
+                            <div class="mb-4">
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">姓名</label>
+                                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors" placeholder="您的姓名">
+                            </div>
+                            <div class="mb-4">
+                                <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">电话</label>
+                                <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors" placeholder="您的联系电话">
+                            </div>
+                            <div class="mb-4">
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">邮箱</label>
+                                <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors" placeholder="您的电子邮箱">
+                            </div>
+                            <div class="mb-6">
+                                <label for="program" class="block text-sm font-medium text-gray-700 mb-1">意向项目</label>
+                                <select id="program" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors">
+                                    <option value="">请选择</option>
+                                    <option value="kindergarten">国际幼儿园</option>
+                                    <option value="primary">国际小学</option>
+                                    <option value="secondary">国际中学</option>
+                                    <option value="college-prep">大学预科</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-lg font-semibold transition-colors shadow-lg hover:shadow-xl">
+                                提交预约
+                            </button>
+                        </form>
+                    </div>
+                    <div class="hidden md:block relative">
+                        <img src="https://picsum.photos/id/48/800/1000" alt="校园环境" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-primary/50 flex flex-col justify-center p-12">
+                            <h3 class="text-2xl font-bold mb-6">招生信息</h3>
+                            <div class="space-y-6">
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0 mt-1">
+                                        <i class="fa fa-calendar text-white"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-white mb-1">招生季节</h4>
+                                        <p class="text-white/90">春季：1-3月<br>秋季：7-9月</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0 mt-1">
+                                        <i class="fa fa-phone text-white"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-white mb-1">联系电话</h4>
+                                        <p class="text-white/90">400-123-4567</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0 mt-1">
+                                        <i class="fa fa-envelope text-white"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-white mb-1">电子邮箱</h4>
+                                        <p class="text-white/90">admission@bozhong-edu.com</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0 mt-1">
+                                        <i class="fa fa-map-marker text-white"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-white mb-1">校园地址</h4>
+                                        <p class="text-white/90">上海市浦东新区张江高科技园区博云路2号</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section id="contact" class="py-20 bg-light">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="text-center mb-16">
+                <span class="text-accent font-semibold mb-2 block">联系我们</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-primary">欢迎咨询</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">无论您有任何问题或需求，我们的团队随时为您提供帮助和支持。</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <!-- 联系卡片1 -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 text-center transition-all transform hover:scale-105 hover:shadow-2xl">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fa fa-map-marker text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-primary">总部地址</h3>
+                    <p class="text-gray-600">上海市浦东新区张江高科技园区博云路2号</p>
+                </div>
+                
+                <!-- 联系卡片2 -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 text-center transition-all transform hover:scale-105 hover:shadow-2xl">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fa fa-phone text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-primary">联系电话</h3>
+                    <p class="text-gray-600">400-123-4567</p>
+                    <p class="text-gray-600 mt-2">+86 21-5888-8888</p>
+                </div>
+                
+                <!-- 联系卡片3 -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 text-center transition-all transform hover:scale-105 hover:shadow-2xl">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fa fa-envelope text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-primary">电子邮箱</h3>
+                    <p class="text-gray-600">info@bozhong-edu.com</p>
+                    <p class="text-gray-600 mt-2">admission@bozhong-edu.com</p>
+                </div>
+            </div>
+            
+            <!-- 社交媒体 -->
+            <div class="text-center">
+                <h3 class="text-xl font-bold mb-6 text-primary">关注我们</h3>
+                <div class="flex justify-center space-x-6">
+                    <a href="#" class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all">
+                        <i class="fa fa-weixin text-xl"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all">
+                        <i class="fa fa-weibo text-xl"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all">
+                        <i class="fa fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all">
+                        <i class="fa fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all">
+                        <i class="fa fa-youtube-play text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-primary text-white py-12">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <a href="#" class="flex items-center space-x-2 mb-6">
+                        <div class="h-12 w-12 rounded-full bg-white flex items-center justify-center">
+                            <span class="text-primary text-2xl font-bold">BZ</span>
+                        </div>
+                        <span class="text-xl font-bold text-white">波中教育集团</span>
+                    </a>
+                    <p class="text-white/80 mb-6">培养具有全球视野、创新精神和社会责任感的未来领导者。</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white/70 hover:text-white transition-colors"><i class="fa fa-weixin"></i></a>
+                        <a href="#" class="text-white/70 hover:text-white transition-colors"><i class="fa fa-weibo"></i></a>
+                        <a href="#" class="text-white/70 hover:text-white transition-colors"><i class="fa fa-linkedin"></i></a>
+                        <a href="#" class="text-white/70 hover:text-white transition-colors"><i class="fa fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">快速链接</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-white/80 hover:text-white transition-colors">首页</a></li>
+                        <li><a href="#about" class="text-white/80 hover:text-white transition-colors">关于我们</a></li>
+                        <li><a href="#programs" class="text-white/80 hover:text-white transition-colors">教育项目</a></li>
+                        <li><a href="#achievements" class="text-white/80 hover:text-white transition-colors">办学成果</a></li>
+                        <li><a href="#contact" class="text-white/80 hover:text-white transition-colors">联系我们</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">教育项目</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-white/80 hover:text-white transition-colors">国际幼儿园</a></li>
+                        <li><a href="#" class="text-white/80 hover:text-white transition-colors">国际小学</a></li>
+                        <li><a href="#" class="text-white/80 hover:text-white transition-colors">国际中学</a></li>
+                        <li><a href="#" class="text-white/80 hover:text-white transition-colors">大学预科</a></li>
+                        <li><a href="#" class="text-white/80 hover:text-white transition-colors">夏令营项目</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-6">联系信息</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start space-x-3">
+                            <i class="fa fa-map-marker mt-1 text-white/80"></i>
+                            <span class="text-white/80">北京市朝阳区久文路宇达创意中心</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fa fa-phone mt-1 text-white/80"></i>
+                            <span class="text-white/80">400-123-4567</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fa fa-envelope mt-1 text-white/80"></i>
+                            <span class="text-white/80">info@bozhong-edu.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/20 pt-8 text-center text-white/70 text-sm">
+                <p>&copy; 2025 崔萌萌 李文龙 陈浩林. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 引入JavaScript脚本 -->
+    <script src="js/scripts.js"></script>
+    <!-- 引入AI智能体脚本 -->
+    <script src="js/ai-agent.js"></script>
+</body>
+</html>
